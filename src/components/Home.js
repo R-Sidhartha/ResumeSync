@@ -14,7 +14,7 @@ const Home = ({
 }) => {
   return (
     <>
-      <div className="flex flex-col w-full">
+      <div className="flex flex-col w-full overflow-hidden">
         <div className="w-full">
           <div className="text-center font-semibold text-gray-700">
             <p>Let's find suitable jobs for you</p>

@@ -65,7 +65,7 @@ const UploadResume = ({
   };
 
   return (
-    <div className=" flex flex-col justify-center items-center w-full">
+    <div className=" flex flex-col justify-center items-center w-full overflow-hidden">
       <div
         onDrop={handleDrop}
         onDragOver={handleDragOver}

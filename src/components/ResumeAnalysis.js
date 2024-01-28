@@ -16,7 +16,7 @@ const ResumeAnalysis = ({
   }
   return (
     <div
-      className={`flex-col items-center justify-center mt-16 w-full ${
+      className={`flex-col items-center justify-center mt-16 w-full overflow-hidden ${
         showResumeData ? " flex " : " hidden "
       }`}
     >
