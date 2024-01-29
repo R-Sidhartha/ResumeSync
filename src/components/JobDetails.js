@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { LuLoader2 } from "react-icons/lu";
+import Navbar from "./Navbar";
 
 const JobDetails = ({ resumeData }) => {
   const [jobDetails, setJobDetails] = useState(null);
@@ -9,7 +10,6 @@ const JobDetails = ({ resumeData }) => {
   useEffect(() => {
     const fetchjobdetails = async (jobId) => {
       try {
-        // setLoading(true)
         const response1 = await fetch(
           `https://freight-service.azurewebsites.net/api/getjobposting?id=${jobId}`,
           {
@@ -60,8 +60,11 @@ const JobDetails = ({ resumeData }) => {
 
   if (!jobDetails) {
     return (
-      <div className="w-full flex flex-col justify-center items-center gap-3  mt-12">
-        <h1 className="text-2xl font-bold mb-4">Job Details</h1>
+      <div className="w-full flex flex-col justify-center items-center gap-3">
+        <div className="w-full">
+          <Navbar />
+        </div>
+        <h1 className="text-2xl font-bold mb-4 mt-6">Job Details</h1>
         <p className="text-gray-600">Please Wait..., Fetching job details</p>
         <div className="animate-spin loader text-3xl text-orange-400 ">
           <LuLoader2 />
@@ -71,14 +74,17 @@ const JobDetails = ({ resumeData }) => {
   }
   return (
     <>
-      <div className="w-full flex justify-center">
+      <div className="w-full flex justify-center flex-col items-center gap-5">
+        <div className="w-full">
+          <Navbar />
+        </div>
         <div className="w-full md:w-4/5 flex justify-center items-center flex-col bg-white rounded-2xl py-2 px-8">
-          <h1 className="text-2xl font-bold mb-8 mt-2 text-gray-800">Job Details</h1>
+          <h1 className="text-2xl font-bold mb-8 mt-2 text-gray-800">
+            Job Details
+          </h1>
           <div className="flex flex-col gap-2">
             <div className="flex flex-row-reverse justify-between items-center">
-              <div
-                className="bg-yellow-400 flex w-[72px] h-[70px] hover:opacity-60 text-white p-2 rounded-full items-center justify-center cursor-pointer"
-              >
+              <div className="bg-yellow-400 flex w-[72px] h-[70px] hover:opacity-60 text-white p-2 rounded-full items-center justify-center cursor-pointer">
                 <div className="rounded-[50%] w-[60px] h-[60px] bg-white flex items-center justify-center">
                   <div className="rounded-full p-2 bg-yellow-400 h-10 w-10 flex justify-center items-center text-2xl">
                     {job.match_score}
@@ -87,21 +93,27 @@ const JobDetails = ({ resumeData }) => {
               </div>
               <div className="flex flex-col gap-2">
                 <div className="flex items-center">
-                  <h1 className="lg:text-lg font-semibold text-gray-800">Name: </h1>
+                  <h1 className="lg:text-lg font-semibold text-gray-800">
+                    Name:{" "}
+                  </h1>
                   <span className="text-sm lg:text-base mx-1 pt-[2px] md:pt-[1px] text-gray-700">
                     {" "}
                     {jobDetails?.neomDivision}
                   </span>
                 </div>
                 <div className="flex items-center">
-                  <h1 className="lg:text-lg font-semibold text-gray-800">Job Title: </h1>
+                  <h1 className="lg:text-lg font-semibold text-gray-800">
+                    Job Title:{" "}
+                  </h1>
                   <span className="text-sm lg:text-base mx-1 pt-[2px] md:pt-[1px] text-gray-700">
                     {" "}
                     {jobDetails?.jobTitle}
                   </span>
                 </div>
                 <div className="flex items-center">
-                  <h1 className="lg:text-lg font-semibold text-gray-800">Job Type: </h1>
+                  <h1 className="lg:text-lg font-semibold text-gray-800">
+                    Job Type:{" "}
+                  </h1>
                   <span className="text-sm lg:text-base mx-1 pt-[2px] md:pt-[1px] text-gray-700">
                     {" "}
                     {jobDetails?.jobType}
@@ -110,9 +122,11 @@ const JobDetails = ({ resumeData }) => {
               </div>
             </div>
             <div>
-              <h1 className="lg:text-lg font-semibold text-gray-800">Job Description:</h1>
+              <h1 className="lg:text-lg font-semibold text-gray-800">
+                Job Description:
+              </h1>
               <p className="mb-4 text-sm lg:text-base text-justify text-gray-700">
-                {jobDetails?.jobDetails}:
+                {jobDetails?.jobDetails}
               </p>
             </div>
             <div className="flex justify-center ">
@@ -144,12 +158,23 @@ const JobDetails = ({ resumeData }) => {
                 <div className="courses mx-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 justify-center gap-8">
                   {courses?.map((course, index) => (
                     <div
-                      className="max-w-[15rem] flex flex-col gap-3 p-2 bg-gray-100 border border-gray-200 cursor-pointer md:p-8 rounded-2xl"
+                      className="max-w-[15rem] flex flex-col gap-8 p-2 bg-gray-100 border border-gray-200 cursor-pointer md:p-8 rounded-2xl items-center"
                       key={index}
                     >
-                      <img src={course.course_image} alt="img" />
-                      <a href={course.course_url} target="blank">
-                        <p className="mb-2 text-[12px] text-center font-semibold tracking-tight text-gray-600 relative md:text-base">
+                      <div className="w-full h-full overflow-hidden rounded-lg"
+                      >
+                        <img
+                          src={course.course_image}
+                          alt="img"
+                          className="w-full h-full rounded-xl"
+                        />
+                      </div>
+                      <a
+                        href={course.course_url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <p className="mb-2 text-[15px] text-center font-semibold tracking-tight text-gray-600 relative md:text-base">
                           {course.course_title}
                         </p>
                       </a>

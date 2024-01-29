@@ -1,6 +1,7 @@
 import React from "react";
 import { LuLoader2 } from "react-icons/lu";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 
 const RelatedJobs = ({ jobs, jobloading }) => {
   const navigate = useNavigate();
@@ -9,7 +10,10 @@ const RelatedJobs = ({ jobs, jobloading }) => {
     navigate(`/jobdetails/${job.job_id}`, { state: { job } });
   };
   return (
-    <div className={`w-full justify-center flex`}>
+    <div className={`w-full justify-center items-center flex flex-col gap-5`}>
+      <div className="w-full">
+      <Navbar/>
+      </div>
       <div className="w-11/12 flex flex-col  items-center  mt-2 rounded-3xl">
         <h2 className="text-2xl font-bold mb-5 text-gray-800">Related Jobs</h2>
         {jobloading ? (

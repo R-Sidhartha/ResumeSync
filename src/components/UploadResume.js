@@ -82,7 +82,7 @@ const UploadResume = ({
             file ? "opacity-50 pointer-events-none" : ""
           }`}
         >
-          <span className="bg-orange-300 text-gray-700 font-semibold py-1 px-3 cursor-pointer rounded-3xl w-1/4 text-center">
+          <span className="bg-orange-300 text-gray-700 font-semibold py-1 px-3 cursor-pointer rounded-3xl w-1/4 text-center hover:opacity-80">
             Browse
           </span>
           <input

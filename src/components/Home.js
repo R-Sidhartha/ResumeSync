@@ -1,6 +1,7 @@
 import React from "react";
 import UploadResume from "./UploadResume";
 import ResumeAnalysis from "./ResumeAnalysis";
+import Welcome from "./Welcome";
 const Home = ({
   file,
   setFile,
@@ -15,6 +16,7 @@ const Home = ({
   return (
     <>
       <div className="flex flex-col w-full overflow-hidden">
+      <Welcome />
         <div className="w-full">
           <div className="text-center font-semibold text-gray-700">
             <p>Let's find suitable jobs for you</p>

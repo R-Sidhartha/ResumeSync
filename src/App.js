@@ -3,16 +3,15 @@ import RelatedJobs from "./components/RelatedJobs";
 import Home from "./components/Home";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import JobDetails from "./components/JobDetails";
-import Welcome from "./components/Welcome";
+
 const App = () => {
-  const [resumeData, setResumeData] = useState({});  
+  const [resumeData, setResumeData] = useState({});
   const [loading, setLoading] = useState(false);
   const [jobloading, setjobLoading] = useState(false);
   const [relatedJobs, setRelatedJobs] = useState([]);
   const [ResumeName, setResumeName] = useState("");
   const [showResumeData, setShowResumeData] = useState(false);
   const [file, setFile] = useState(null);
-
   const handleUpload = async (file) => {
     setLoading(true);
     setShowResumeData(true);
@@ -51,39 +50,35 @@ const App = () => {
   };
 
   return (
-    <div className=" p-4 bg-gray-100 min-h-screen  overflow-hidden">
+    <div className="p-4 bg-gray-100 min-h-screen overflow-hidden">
       <Router>
-        <Welcome/>
         <Routes>
-          <Route
-            exact
-            path="/"
-            element={
-              <Home
-                setFile={setFile}
-                file={file}
-                onUpload={handleUpload}
-                setResumeName={setResumeName}
-                setShowResumeData={setShowResumeData}
-                resumeData={resumeData}
-                loading={loading}
-                ResumeName={ResumeName}
-                showResumeData={showResumeData}
-              />
-            }
-          />
-          {file && (
             <Route
-              exact
-              path="/relatedjobs"
+              index
               element={
-                <RelatedJobs jobs={relatedJobs} jobloading={jobloading} />
+                <Home
+                  setFile={setFile}
+                  file={file}
+                  onUpload={handleUpload}
+                  setResumeName={setResumeName}
+                  setShowResumeData={setShowResumeData}
+                  resumeData={resumeData}
+                  loading={loading}
+                  ResumeName={ResumeName}
+                  showResumeData={showResumeData}
+                />
               }
             />
-          )}
+            {file && (
+              <Route
+                path="relatedjobs"
+                element={
+                  <RelatedJobs jobs={relatedJobs} jobloading={jobloading} />
+                }
+              />
+            )}
           <Route
-            exact
-            path="/jobdetails/:jobid"
+            path="jobdetails/:jobid"
             element={<JobDetails resumeData={resumeData} />}
           />
         </Routes>
